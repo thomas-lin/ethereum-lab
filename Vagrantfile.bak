@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  
+  config.vm.box = "ubuntu/trusty64"
+
+  config.vm.define "ethereum-lab" do |d|
+    d.vm.hostname = "ethereum-lab"
+  end
+
+  
+  config.vm.network "private_network", ip: "10.3.10.101"
+  config.vm.provider "virtualbox" do |vb|
+  
+    vb.memory = "1024"
+  end
+
+  config.ssh.password = "vagrant"
+  config.vm.provision :shell , path: "bootstrap.sh"
+  
+end
