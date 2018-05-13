@@ -75,12 +75,26 @@ geth --identity "ethereumLab" --rpc --rpccorsdomain '*' --rpcaddr '0.0.0.0' --rp
 > personal.unlockAccount(eth.coinbase)
 ```
 
-- Send Transaction
+- Send Transaction and return Transaction Hash
 ```
 > eth.sendTransaction({from: eth.coinbase, to:'target coinbase', value: web3.toWei(10, 'ether')})
 ```
 
-# Test RPC to get coinbase
+-- Check Transaction Pool status
 ```
-curl -X POST --header 'Content-Type: application/json' --data '{"jsonrpc":"2.0","method":"eth_coinbase","id":1}' http://localhost:8545
+> txpool.status
+```
+
+-- Get Transaction Info
+```
+> eth.getTransaction('transaction hash')
+```
+
+# Test RPC
+```
+$ curl -X POST --header 'Content-Type: application/json' --data '{"jsonrpc":"2.0","method":"eth_coinbase","id":1}' http://localhost:8545
+```
+```
+$ curl -X POST --header 'Content-Type: application/json' --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' http://localhost:8545
+
 ```
